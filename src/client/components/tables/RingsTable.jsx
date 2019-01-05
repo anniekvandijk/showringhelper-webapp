@@ -33,10 +33,6 @@ const RingsTable = (props) => {
     );
   }
 
-  const editAction = (id) => {
-    handleTableEditClick(id);
-  };
-
   const renderChip = (values) => {
     let tags;
     if (Array.isArray(values)) {
@@ -59,7 +55,6 @@ const RingsTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell />
             <TableCell>Next to prepare</TableCell>
             <TableCell>Prepare</TableCell>
             <TableCell>In ring</TableCell>
@@ -73,9 +68,6 @@ const RingsTable = (props) => {
                 <TableCell colSpan="4"><b>{d.name}</b></TableCell>
               </TableRow>
               <TableRow key={d.id} name={d.id}>
-                <TableCell>
-                  <EditButton onClick={() => editAction(d.id)} />
-                </TableCell>
                 {(d.rings && d.rings.nextToPrepare)
                   ? (
                     <TableCell>
@@ -109,7 +101,6 @@ const RingsTable = (props) => {
 
 RingsTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleTableEditClick: PropTypes.func.isRequired,
   data: PropTypes.array
 };
 
