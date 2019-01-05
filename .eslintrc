@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "import",                                                                                                              
+    "react",                                                                                                               
+    "jsx-a11y" 
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "import/no-extraneous-dependencies": [2, {}],
+    "linebreak-style": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/forbid-prop-types": 0,
+    "prefer-destructuring": [2, {
+      "AssignmentExpression": {
+        "array": false,
+        "object": false
+      }
+    }]
+  }
+}
