@@ -1,11 +1,11 @@
 {
-  "name": "showringhelper",
+  "name": "showringhelper-webapplication",
   "version": "1.0.0",
-  "description": "Showring helper management program",
+  "description": "Showring helper webapplication",
   "author": "Anniek van Dijk, Animundo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anniekvandijk/showringhelper-manager"
+    "url": "https://github.com/anniekvandijk/showringhelper-webapp"
   },
   "license": "ISC",
   "main": "src/client/index.jsx",

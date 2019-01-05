@@ -1,6 +1,6 @@
-# Showring helper manager
+# Showring helper web application
 
-This is a showring management program. For now only for alpaca shows.
+This is a showring webaplication for showing ring progress. 
 
 It's in development. 
 

@@ -14,12 +14,12 @@ const styles = theme => ({
 
 class Header extends React.PureComponent {
   render() {
-    const { classes, headerText: header } = this.props;
+    const { classes } = this.props;
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap>
-            {`Ringshelper manager > ${header}`}
+            {'Ringschedules'}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -28,12 +28,7 @@ class Header extends React.PureComponent {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  headerText: PropTypes.string.isRequired
+  classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  headerText: state.navigation.menu.headerText
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(Header));
+export default connect()(withStyles(styles)(Header));

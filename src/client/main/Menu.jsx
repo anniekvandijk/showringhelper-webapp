@@ -8,14 +8,10 @@ import { Link } from 'react-router-dom';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
-import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
 import { setSelectedMenuItem } from '../../redux/navigationReducer';
 
-const drawerWidth = 240;
+const drawerWidth = 0;
 
 const styles = theme => ({
   drawerPaper: {
@@ -50,50 +46,6 @@ class Menu extends React.PureComponent {
               <HomeIcon />
             </ListItemIcon>
             <ListItemText inset primary="Home" />
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/shows"
-            selected={selectedItem === 1}
-            onClick={() => setSelected(1, 'Shows')}
-          >
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Shows" />
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/rings"
-            selected={selectedItem === 2}
-            onClick={() => setSelected(2, 'Rings')}
-          >
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Rings" />
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/about"
-            selected={selectedItem === 3}
-            onClick={() => setSelected(3, 'About')}
-          >
-            <ListItemIcon>
-              <HelpIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="About" />
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/settings"
-            selected={selectedItem === 4}
-            onClick={() => setSelected(4, 'Settings')}
-          >
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Settings" />
           </MenuItem>
         </MenuList>
       </Drawer>
