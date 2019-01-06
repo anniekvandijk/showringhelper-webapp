@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RingsTable from '../components/tables/RingsTable';
 import { readRecords } from '../../redux/showsReducer';
+import { database } from '../../server/firebase';
 
 class RingsContainer extends React.PureComponent {
-
+  
   render() {
-    const {
-      shows, loadData
-    } = this.props;
+    const { shows, loadData } = this.props;
+
+    const event = database.collection('shows').onSnapshot((docSnapshot) => {
+      console.log(`Received doc snapshot: ${docSnapshot}`);
+    }, (err) => {
+      console.log(`Encountered error: ${err}`);
+    });
 
     return (
       <div id="ringsscontainer">
@@ -31,7 +36,6 @@ RingsContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  initialValues: state.shows.updateShow,
   shows: state.shows.shows
 });
 

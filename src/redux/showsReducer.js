@@ -17,6 +17,7 @@ const apiError = createAction(actionType.API_ERROR);
 
 const readRecords = path => (dispatch) => {
   dispatch(apiCallStarted());
+  console.log('api call');
   Api.get(path)
     .then(shows => dispatch(readApiSuccess(shows)))
     .catch(error => dispatch(apiError(error)));
