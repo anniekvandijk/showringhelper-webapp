@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RenderedChip from '../formFields/Chip';
-import EditButton from '../buttons/EditButton';
 import Loader from '../Loader';
 
 const styles = theme => ({
@@ -25,7 +24,7 @@ const styles = theme => ({
 
 const RingsTable = (props) => {
   const {
-    classes, data, handleTableEditClick
+    classes, data
   } = props;
   if (data === null) {
     return (
@@ -65,7 +64,7 @@ const RingsTable = (props) => {
             d.activeShow
             && <>
               <TableRow key={d.id + d.name}>
-                <TableCell colSpan="4"><b>{d.name}</b></TableCell>
+                <TableCell colSpan="3"><b>{d.name}</b></TableCell>
               </TableRow>
               <TableRow key={d.id} name={d.id}>
                 {(d.rings && d.rings.nextToPrepare)
