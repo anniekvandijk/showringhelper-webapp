@@ -14,11 +14,11 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
-    port: 3000,
+    port: 3010,
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/': 'http://localhost:3300'
+      '/': 'http://localhost:3310'
     }
   },
   module: {
