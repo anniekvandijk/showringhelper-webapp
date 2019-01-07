@@ -6,15 +6,30 @@ import { readRecords } from '../../redux/showsReducer';
 import { database } from '../../server/firebase';
 
 class RingsContainer extends React.PureComponent {
-  
-  render() {
-    const { shows, loadData } = this.props;
+  componentDidMount() {
+    const { loadData } = this.props;
 
-    const event = database.collection('shows').onSnapshot((docSnapshot) => {
-      console.log(`Received doc snapshot: ${docSnapshot}`);
-    }, (err) => {
-      console.log(`Encountered error: ${err}`);
-    });
+    database.collection('shows')
+      .where('activeShow', '==', true)
+      .onSnapshot((docSnapshot) => {
+        console.log(`Received doc snapshot: ${docSnapshot}`);
+        loadData();
+      }, (err) => {
+        console.log(`Encountered error: ${err}`);
+      });
+  }
+
+  componentWillUnmount() {
+    const unsubscribe = database.collection('shows')
+      .onSnapshot(() => {});
+    unsubscribe();
+  }
+
+  render() {
+    const { shows } = this.props;
+
+    console.log('shows');
+    console.log(shows);
 
     return (
       <div id="ringsscontainer">

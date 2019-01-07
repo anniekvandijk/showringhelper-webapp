@@ -11,9 +11,8 @@ showsRouter.get('/', (req, res, next) => {
       querySnapshot.forEach((doc) => {
         const Show = {};
         Show.id = doc.id;
-        Object.keys(doc.data()).map((key) => {
+        Object.keys(doc.data()).forEach((key) => {
           Show[key] = doc.data()[key];
-          return console.log('');
         });
         shows.push(Show);
       });
