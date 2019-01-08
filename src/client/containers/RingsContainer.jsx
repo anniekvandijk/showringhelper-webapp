@@ -14,6 +14,7 @@ class RingsContainer extends React.PureComponent {
       .onSnapshot((docSnapshot) => {
         console.log(`Received doc snapshot: ${docSnapshot}`);
         loadData();
+        console.log('data loaded');
       }, (err) => {
         console.log(`Encountered error: ${err}`);
       });
@@ -33,9 +34,11 @@ class RingsContainer extends React.PureComponent {
 
     return (
       <div id="ringsscontainer">
-        <RingsTable
+        {shows !== null && Array.isArray(shows) &&
+        (<RingsTable
           data={shows}
         />
+        )}
       </div>
     );
   }

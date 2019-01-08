@@ -11,12 +11,12 @@ showsRouter.get('/', (req, res, next) => {
       querySnapshot.forEach((doc) => {
         const Show = {};
         Show.id = doc.id;
-        Object.keys(doc.data()).forEach((key) => {
+        Object.keys(doc.data()).map((key) => {
           Show[key] = doc.data()[key];
         });
         shows.push(Show);
       });
-      res.json(shows);
+      return res.json(shows);
     });
   } catch (e) {
     next(e);
