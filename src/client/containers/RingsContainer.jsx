@@ -11,10 +11,8 @@ class RingsContainer extends React.PureComponent {
 
     database.collection('shows')
       .where('activeShow', '==', true)
-      .onSnapshot((docSnapshot) => {
-        console.log(`Received doc snapshot: ${docSnapshot}`);
+      .onSnapshot(() => {
         loadData();
-        console.log('data loaded');
       }, (err) => {
         console.log(`Encountered error: ${err}`);
       });
@@ -29,8 +27,11 @@ class RingsContainer extends React.PureComponent {
   render() {
     const { shows } = this.props;
 
-    console.log('shows');
-    console.log(shows);
+    if (shows !== null) {
+      console.log('shows');
+      console.log(shows);
+      console.log(`——`);
+    }
 
     return (
       <div id="ringsscontainer">

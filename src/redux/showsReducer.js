@@ -25,15 +25,10 @@ const readRecords = path => (dispatch) => {
 const showsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.API_CALL_STARTED:
-      console.log('api call started');
       return state;
     case actionType.READ_API_SUCCESS:
-      console.log('api succes');
-      console.log(action.payload);
       return { shows: action.payload };
     case actionType.API_ERROR:
-      console.log('api error');
-      console.log(action.payload);
       return action.payload;
     default:
       return state;

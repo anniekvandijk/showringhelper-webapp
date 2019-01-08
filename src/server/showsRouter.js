@@ -19,7 +19,7 @@ showsRouter.get('/', (req, res, next) => {
       return res.json(shows);
     });
   } catch (e) {
-    next(e);
+    return `{ error get shows: ${e}}`;
   }
 });
 
