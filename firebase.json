@@ -8,8 +8,8 @@
     ],
     "rewrites": [
       {
-        "source": "/api/shows", 
-        "destination": "/api/shows"
+        "source": "/api/**", 
+        "function": "webApi"
       },
       {
         "source": "**",

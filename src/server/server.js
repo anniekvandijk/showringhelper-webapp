@@ -1,4 +1,5 @@
 import express from 'express';
+import * as functions from 'firebase-functions';
 import cors from 'cors';
 import path from 'path';
 import http from 'http';
@@ -26,3 +27,7 @@ app.set('port', port);
 const server = http.createServer(app);
 /** Listen on provided port, on all network interfaces. */
 server.listen(port, () => console.log(`Server Running on port ${port}`));
+
+const webApi = functions.https.onRequest(server);
+
+export default webApi;
