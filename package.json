@@ -10,11 +10,11 @@
   "license": "ISC",
   "main": "src/client/index.jsx",
   "scripts": {
-    "start:dev:client": "webpack-dev-server --mode development --config ./config/webpack.base.config.js --hot --inline",
-    "start:dev:server": "nodemon src/server/start.js",
+    "start:dev:client": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./config/webpack.base.config.js --hot --inline",
+    "start:dev:server": "cross-env NODE_ENV=development nodemon src/server/start.js",
     "start": "concurrently \"npm run start:dev:server\" \"npm run start:dev:client\"",
-    "start:prd:client": "webpack --mode production --config config/webpack.prd.config.js",
-    "start:prd:server": "node src/server/start.js",
+    "start:prd:client": "cross-env NODE_ENV=production webpack --mode production --config config/webpack.prd.config.js",
+    "start:prd:server": "cross-env NODE_ENV=production node src/server/start.js",
     "build": "concurrently \"npm run clean:dist clean:dist\" \"npm run start:prd:server\" \"npm run start:prd:client\"",
     "clean:dist": "rimraf ./dist",
     "test": "jest"
@@ -38,6 +38,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "concurrently": "^4.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",

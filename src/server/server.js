@@ -20,10 +20,8 @@ app.use('*', (req, res) => {
 });
 
 /** Get port from environment and store in Express. */
-const port = process.env.PORT || '3310';
-console.log(port);
+const port = process.env.NODE_ENV !== 'production' ? '3310' : '80';
 app.set('port', port);
-
 /** Create HTTP server. */
 const server = http.createServer(app);
 /** Listen on provided port, on all network interfaces. */

@@ -4,7 +4,7 @@ import { database } from './firebase';
 const showsRouter = Router();
 const dbCollection = 'shows';
 
-showsRouter.get('/', (req, res, next) => {
+showsRouter.get('*', (req, res, next) => {
   try {
     const shows = [];
     database.collection(dbCollection).get().then((querySnapshot) => {

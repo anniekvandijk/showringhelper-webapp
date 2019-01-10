@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import RingsTable from '../components/tables/RingsTable';
 import { readRecords } from '../../redux/showsReducer';
 import { database } from '../../server/firebase';
+import Loader from '../components/Loader';
 
 class RingsContainer extends React.PureComponent {
   componentDidMount() {
@@ -30,13 +31,18 @@ class RingsContainer extends React.PureComponent {
     if (shows !== null) {
       console.log('shows');
       console.log(shows);
-      console.log(`——`);
+    }
+
+    if (shows === null) {
+      return (
+        <Loader />
+      );
     }
 
     return (
       <div id="ringsscontainer">
-        {shows !== null && Array.isArray(shows) &&
-        (<RingsTable
+        {shows !== null && Array.isArray(shows)
+        && (<RingsTable
           data={shows}
         />
         )}
@@ -59,7 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: () => dispatch(readRecords('/api/shows/'))
+  loadData: () => dispatch(readRecords('/api/shows'))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RingsContainer);
