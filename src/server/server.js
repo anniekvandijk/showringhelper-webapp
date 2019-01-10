@@ -12,7 +12,7 @@ const routePath = path.join(distDir, '/index.html');
 
 // Point static path to dist
 app.use(express.static(distDir));
-app.use(cors({ origin: false }));
+app.use(cors({ origin: true }));
 app.use(express.json());
 app.use('/api/shows', showsRouter);
 app.use(methodOverride());
