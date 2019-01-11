@@ -2,18 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RingsTable from '../components/tables/RingsTable';
-import { readRecords } from '../../redux/showsReducer';
+import { createRecords } from '../../redux/showsReducer';
 import { database } from '../../server/firebase';
 import Loader from '../components/Loader';
 
 class RingsContainer extends React.PureComponent {
   componentDidMount() {
-    const { loadData } = this.props;
+    const { handleSnapshot } = this.props;
 
     database.collection('shows')
       .where('activeShow', '==', true)
       .onSnapshot(() => {
-        loadData();
+        const shows = [];
+        database.collection('shows').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const Show = {};
+            Show.id = doc.id;
+            Object.keys(doc.data()).map((key) => {
+              Show[key] = doc.data()[key];
+            });
+            shows.push(Show);
+          });
+          console.log(shows);
+          handleSnapshot(shows);
+        });
       }, (err) => {
         console.log(`Encountered error: ${err}`);
       });
@@ -52,7 +64,7 @@ class RingsContainer extends React.PureComponent {
 }
 
 RingsContainer.propTypes = {
-  loadData: PropTypes.func.isRequired,
+  handleSnapshot: PropTypes.func.isRequired,
   shows: PropTypes.array
 };
 
@@ -65,7 +77,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: () => dispatch(readRecords('/api/shows'))
+  handleSnapshot: snapshot => dispatch(createRecords(snapshot))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RingsContainer);

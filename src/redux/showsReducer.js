@@ -22,6 +22,10 @@ const readRecords = path => (dispatch) => {
     .catch(error => dispatch(apiError(error)));
 };
 
+const createRecords = shows => (dispatch) => {
+  dispatch(readApiSuccess(shows));
+};
+
 const showsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.API_CALL_STARTED:
@@ -37,5 +41,6 @@ const showsReducer = (state = initialState, action) => {
 
 export {
   showsReducer,
-  readRecords
+  readRecords,
+  createRecords
 };
