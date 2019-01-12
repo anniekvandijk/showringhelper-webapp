@@ -23,7 +23,6 @@ class RingsContainer extends React.PureComponent {
             });
             shows.push(Show);
           });
-          console.log(shows);
           handleSnapshot(shows);
         });
       }, (err) => {
@@ -39,11 +38,6 @@ class RingsContainer extends React.PureComponent {
 
   render() {
     const { shows } = this.props;
-
-    if (shows !== null) {
-      console.log('shows');
-      console.log(shows);
-    }
 
     if (shows === null) {
       return (

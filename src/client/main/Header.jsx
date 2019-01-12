@@ -14,12 +14,15 @@ const styles = theme => ({
 
 class Header extends React.PureComponent {
   render() {
-    const { classes } = this.props;
+    const { classes, headerText } = this.props;
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap>
-            {'Showrings'}
+            { headerText != null && headerText.map(d => (
+              d.activeShow
+              && `Showring ${d.name}`
+            ))}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -28,7 +31,12 @@ class Header extends React.PureComponent {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  headerText: PropTypes.string.isRequired
 };
 
-export default connect()(withStyles(styles)(Header));
+const mapStateToProps = state => ({
+  headerText: state.shows.shows
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(Header));

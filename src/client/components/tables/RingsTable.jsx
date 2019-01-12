@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import grey from '@material-ui/core/colors/grey';
 import Table from '@material-ui/core/Table';
 import Typography from '@material-ui/core/Typography';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,14 +15,14 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    padding: '5px'
+    padding: '0px'
   },
   table: {
     width: '100%'
   },
   row: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default
+      backgroundColor: grey[100]
     }
   }
 });
@@ -57,18 +58,13 @@ const RingsTable = (props) => {
         {data.map(d => (
           d.activeShow
           && <>
-            <TableRow width="100%" className={classes.row}>
-              <TableCell colSpan="2">
-                <Typography variant="display1" gutterBottom>
-                  {d.name}
-                </Typography>
-              </TableCell>
-            </TableRow>
               {d.rings && d.rings.nextToPrepare
               && (
                 <TableRow className={classes.row}>
                   <TableCell width="25%">
-                    <b>Volgende opstellen voor ring</b>
+                    <Typography variant="display1" color="inherit" noWrap>
+                      Voorbereiden
+                    </Typography>
                   </TableCell>
                   <TableCell>
                     {renderChip(d.rings.nextToPrepare)}
@@ -80,7 +76,9 @@ const RingsTable = (props) => {
               && (
                 <TableRow className={classes.row}>
                   <TableCell>
-                    <b>Opstellen voor ring</b>
+                    <Typography variant="display1" color="inherit" noWrap>
+                      Opstellen voor ring
+                    </Typography>
                   </TableCell>
                   <TableCell>
                     {renderChip(d.rings.prepare)}
@@ -92,7 +90,9 @@ const RingsTable = (props) => {
               && (
                 <TableRow className={classes.row}>
                   <TableCell>
-                    <b>Nu in de ring</b>
+                    <Typography variant="display1" color="inherit" noWrap>
+                      In ring
+                    </Typography>
                   </TableCell>
                   <TableCell>
                     {renderChip(d.rings.inRing)}
