@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 import RingsTable from '../components/tables/RingsTable';
+import RingsTableMobile from '../components/tables/RingsTableMobile';
 import { createRecords } from '../../redux/showsReducer';
 import { database } from '../../server/firebase';
 import Loader from '../components/Loader';
@@ -48,9 +50,16 @@ class RingsContainer extends React.PureComponent {
     return (
       <div id="ringsscontainer">
         {shows !== null && Array.isArray(shows)
-        && (<RingsTable
-          data={shows}
-        />
+        && (
+          <MediaQuery minDeviceWidth={700}>
+            {(matches) => {
+              if (matches) {
+                return <RingsTable data={shows}></RingsTable>;
+              } else {
+                return <RingsTableMobile data={shows}></RingsTableMobile>;
+              }
+            }}
+          </MediaQuery>
         )}
       </div>
     );
