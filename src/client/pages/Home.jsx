@@ -6,7 +6,6 @@ import RingsContainer from '../containers/RingsContainer';
 const Home = () => (
   <PageWrapper>
     <Typography variant="display1" gutterBottom>
-        Rings
     </Typography>
     <RingsContainer />
   </PageWrapper>

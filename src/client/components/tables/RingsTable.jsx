@@ -2,9 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+import Typography from '@material-ui/core/Typography';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RenderedChip from '../formFields/Chip';
@@ -19,6 +18,11 @@ const styles = theme => ({
   },
   table: {
     width: '100%'
+  },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default
+    }
   }
 });
 
@@ -40,59 +44,65 @@ const RingsTable = (props) => {
       tags = values.split(/[\s,]+/);
     }
     return tags.map(tag => (
-      <div key={tag}>
-        <RenderedChip
-          key={tag.key}
-          label={tag}
-        />
-      </div>
+      <RenderedChip
+        key={tag.key}
+        label={tag}
+      />
     ));
   };
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Next to prepare</TableCell>
-            <TableCell>Prepare</TableCell>
-            <TableCell>In ring</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(d => (
-            d.activeShow
-            && <>
-              <TableRow key={d.id + d.name}>
-                <TableCell colSpan="3"><b>{d.name}</b></TableCell>
-              </TableRow>
-              <TableRow key={d.id} name={d.id}>
-                {(d.rings && d.rings.nextToPrepare)
-                  ? (
-                    <TableCell>
-                      {renderChip(d.rings.nextToPrepare)}
-                    </TableCell>)
-                  : <TableCell />
-                }
-                {(d.rings && d.rings.prepare)
-                  ? (
-                    <TableCell>
-                      {renderChip(d.rings.prepare)}
-                    </TableCell>)
-                  : <TableCell />
-                }
-                {(d.rings && d.rings.inRing)
-                  ? (
-                    <TableCell>
-                      {renderChip(d.rings.inRing)}
-                    </TableCell>)
-                  : <TableCell />
-                }
-              </TableRow>
-            </>
-          ))
-          }
-        </TableBody>
+        {data.map(d => (
+          d.activeShow
+          && <>
+            <TableRow width="100%" className={classes.row}>
+              <TableCell colSpan="2">
+                <Typography variant="display1" gutterBottom>
+                  {d.name}
+                </Typography>
+              </TableCell>
+            </TableRow>
+              {d.rings && d.rings.nextToPrepare
+              && (
+                <TableRow className={classes.row}>
+                  <TableCell width="25%">
+                    <b>Volgende opstellen voor ring</b>
+                  </TableCell>
+                  <TableCell>
+                    {renderChip(d.rings.nextToPrepare)}
+                  </TableCell>
+                </TableRow>
+              )
+              }
+              {d.rings && d.rings.prepare
+              && (
+                <TableRow className={classes.row}>
+                  <TableCell>
+                    <b>Opstellen voor ring</b>
+                  </TableCell>
+                  <TableCell>
+                    {renderChip(d.rings.prepare)}
+                  </TableCell>
+                </TableRow>
+              )
+              }
+              {d.rings && d.rings.inRing
+              && (
+                <TableRow className={classes.row}>
+                  <TableCell>
+                    <b>Nu in de ring</b>
+                  </TableCell>
+                  <TableCell>
+                    {renderChip(d.rings.inRing)}
+                  </TableCell>
+                </TableRow>
+              )
+              }
+        </>
+        ))
+      }
       </Table>
     </Paper>
   );

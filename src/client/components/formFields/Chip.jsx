@@ -6,10 +6,16 @@ import PropTypes from 'prop-types';
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    float: 'left'
   },
   chip: {
-    margin: theme.spacing.unit * 0.5
+    margin: theme.spacing.unit * 0.5,
+    padding: theme.spacing.unit * 1.5,
+    fontSize: '40px',
+    fontWeight: 'bold',
+    width: '120px'
   }
 });
 
@@ -21,7 +27,7 @@ const RenderedChip = (props) => {
     <div className={classes.root}>
       <Chip
         className={classes.chip}
-        color="primary"
+        color="secondary"
         label={label}
         {...input}
         {...extra}

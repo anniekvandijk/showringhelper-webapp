@@ -19,7 +19,7 @@ class Header extends React.PureComponent {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap>
-            {'Showring schedules'}
+            {'Showrings'}
           </Typography>
         </Toolbar>
       </AppBar>
