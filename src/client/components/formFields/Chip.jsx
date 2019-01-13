@@ -20,7 +20,7 @@ const styles = theme => ({
     fontWeight: 'bold',
     width: '120px',
     [theme.breakpoints.down('xs')]: {
-      width: '50px'
+      width: '60px'
     }
   }
 });

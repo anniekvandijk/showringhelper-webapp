@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import RingsTable from '../components/tables/RingsTable';
@@ -46,11 +47,19 @@ class RingsContainer extends React.PureComponent {
       );
     }
 
+    if (shows === []) {
+      return (
+        <Typography variant="display2" color="inherit" noWrap>
+          Er zijn geen active shows
+        </Typography>
+      );
+    }
+
     return (
       <div id="ringsscontainer">
-        {shows !== null && Array.isArray(shows)
+        {shows !== null && Array.isArray(shows) && shows !== []
         && (
-          <MediaQuery minDeviceWidth={700}>
+          <MediaQuery minDeviceWidth={900}>
             {(matches) => {
               if (matches) {
                 return <RingsTable data={shows} />;
