@@ -14,8 +14,14 @@ const styles = theme => ({
     margin: theme.spacing.unit * 0.5,
     padding: theme.spacing.unit * 1.5,
     fontSize: '40px',
+    [theme.breakpoints.down(`xs`)]: {
+      fontSize: '10px'
+    },
     fontWeight: 'bold',
-    width: '120px'
+    width: '120px',
+    [theme.breakpoints.down(`xs`)]: {
+      width: '50px'
+    }
   }
 });
 
