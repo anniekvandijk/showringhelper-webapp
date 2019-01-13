@@ -13,7 +13,6 @@ class RingsContainer extends React.PureComponent {
     const { handleSnapshot } = this.props;
 
     database.collection('shows')
-      .where('activeShow', '==', true)
       .onSnapshot(() => {
         const shows = [];
         database.collection('shows').get().then((querySnapshot) => {
@@ -54,10 +53,9 @@ class RingsContainer extends React.PureComponent {
           <MediaQuery minDeviceWidth={700}>
             {(matches) => {
               if (matches) {
-                return <RingsTable data={shows}></RingsTable>;
-              } else {
-                return <RingsTableMobile data={shows}></RingsTableMobile>;
+                return <RingsTable data={shows} />;
               }
+              return <RingsTableMobile data={shows} />;
             }}
           </MediaQuery>
         )}

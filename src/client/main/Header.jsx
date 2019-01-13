@@ -32,7 +32,11 @@ class Header extends React.PureComponent {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  headerText: PropTypes.string.isRequired
+  headerText: PropTypes.array
+};
+
+Header.defaultProps = {
+  headerText: 'Geen active show'
 };
 
 const mapStateToProps = state => ({

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
 import Table from '@material-ui/core/Table';
+import { TableBody } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RenderedChip from '../formFields/Chip';
 import Loader from '../Loader';
+import createId from '../../utilities/createId';
 
 const styles = theme => ({
   root: {
@@ -46,7 +48,7 @@ const RingsTable = (props) => {
     }
     return tags.map(tag => (
       <RenderedChip
-        key={tag.key}
+        key={createId()}
         label={tag}
       />
     ));
@@ -55,54 +57,58 @@ const RingsTable = (props) => {
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
-        {data.map(d => (
-          d.activeShow
-          && <>
-              {d.rings && d.rings.nextToPrepare
-              && (
-                <TableRow className={classes.row}>
-                  <TableCell width="25%">
-                    <Typography variant="display1" color="inherit" noWrap>
-                      Voorbereiden
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    {renderChip(d.rings.nextToPrepare)}
-                  </TableCell>
-                </TableRow>
-              )
-              }
-              {d.rings && d.rings.prepare
-              && (
-                <TableRow className={classes.row}>
-                  <TableCell>
-                    <Typography variant="display1" color="inherit" noWrap>
-                      Opstellen voor ring
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    {renderChip(d.rings.prepare)}
-                  </TableCell>
-                </TableRow>
-              )
-              }
-              {d.rings && d.rings.inRing
-              && (
-                <TableRow className={classes.row}>
-                  <TableCell>
-                    <Typography variant="display1" color="inherit" noWrap>
-                      In ring
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    {renderChip(d.rings.inRing)}
-                  </TableCell>
-                </TableRow>
-              )
-              }
-        </>
-        ))
-      }
+        <TableBody>
+          {data.map(d => (
+            d.activeShow
+            && (
+              <Fragment key={createId()}>
+                {d.rings && d.rings.nextToPrepare
+                && (
+                  <TableRow className={classes.row}>
+                    <TableCell width="25%">
+                      <Typography variant="display1" color="inherit" noWrap>
+                        Voorbereiden
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      {renderChip(d.rings.nextToPrepare)}
+                    </TableCell>
+                  </TableRow>
+                )
+                }
+                {d.rings && d.rings.prepare
+                && (
+                  <TableRow className={classes.row}>
+                    <TableCell>
+                      <Typography variant="display1" color="inherit" noWrap>
+                        Opstellen voor ring
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      {renderChip(d.rings.prepare)}
+                    </TableCell>
+                  </TableRow>
+                )
+                }
+                {d.rings && d.rings.inRing
+                && (
+                  <TableRow className={classes.row}>
+                    <TableCell>
+                      <Typography variant="display1" color="inherit" noWrap>
+                        In ring
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      {renderChip(d.rings.inRing)}
+                    </TableCell>
+                  </TableRow>
+                )
+                }
+              </Fragment>
+            )
+          ))
+        }
+        </TableBody>
       </Table>
     </Paper>
   );

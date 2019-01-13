@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Header from './Header';
-import Menu from './Menu';
 
 const styles = theme => ({
   root: {
@@ -30,7 +29,6 @@ const PageWrapper = (props) => {
   return (
     <div className={classes.root}>
       <Header id="header" />
-      {/* <Menu id="main-menu" /> */}
       <main className={classes.content}>
         <div id="main-content" className={classes.toolbar} />
         <Typography component="div">
