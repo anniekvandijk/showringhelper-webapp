@@ -30,7 +30,7 @@ const PageWrapper = (props) => {
   return (
     <div className={classes.root}>
       <Header id="header" />
-      <Menu id="main-menu" />
+      {/* <Menu id="main-menu" /> */}
       <main className={classes.content}>
         <div id="main-content" className={classes.toolbar} />
         <Typography component="div">
