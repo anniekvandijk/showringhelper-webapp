@@ -44,7 +44,7 @@ const RingsTable = (props) => {
     if (Array.isArray(values)) {
       tags = values;
     } else {
-      tags = values.split(/[\s,]+/);
+      tags = values.trim().split(/[\s,]+/);
     }
     return tags.map(tag => (
       <RenderedChip
